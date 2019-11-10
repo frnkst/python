@@ -1,3 +1,5 @@
+# Safely checks if a password has been leaked in a data breach
+
 import getpass
 import hashlib
 import requests
