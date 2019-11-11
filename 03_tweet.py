@@ -1,4 +1,5 @@
 # Tweet from the command line
+# Usage: python3 03_tweet.py "I love python #everyday_python"
 
 from twitter import *
 import configparser
