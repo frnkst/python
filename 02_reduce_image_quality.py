@@ -1,5 +1,5 @@
 # Reduces image quality to 90%
-# Usage: python3 reduce_image_quality.py *.JPG
+# Usage: python3 02_reduce_image_quality.py *.JPG
 
 import os.path
 from sys import argv
