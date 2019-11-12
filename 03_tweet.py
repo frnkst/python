@@ -4,9 +4,10 @@
 from twitter import *
 import configparser
 import sys
+import os
 
 config = configparser.ConfigParser()
-config.read('twitter-oauth.ini')
+config.read(os.path.join(sys.path[0], 'twitter-oauth.ini'))
 oauth = config['oauth']
 
 t = Twitter(auth=OAuth(
