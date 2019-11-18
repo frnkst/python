@@ -1,5 +1,5 @@
 # Bubble sort
-# 12.29 ms for 10'000 random numbers (0.00 ms when using time sort ;)
+# 11.83 s for 10'000 random numbers (0.00 s when using native time sort ;)
 
 import random
 import time
@@ -19,15 +19,15 @@ sorted_list = bubble_sort(unsorted_list)
 natively_sorted = sorted(unsorted_list)
 print("The result is the same as natively sorted? %s" % (sorted_list == natively_sorted))
 
-# A hundred thousand numbers
+# Ten thousand numbers
 random_list = random.sample(range(10_000), 10_000)
 
-start = time.time()
+start = time.perf_counter()
 sorted_list = bubble_sort(random_list)
-print("Sorted with bubble sort in %.2f ms" % (time.time() - start))
+print("Sorted with bubble sort in %.2f s" % (time.perf_counter() - start))
 
-start = time.time()
+start = time.perf_counter()
 natively_sorted = sorted(random_list)
-print("Sorted with time sort in %.2f ms" % (time.time() - start))
+print("Sorted with native time sort in %.2f s" % (time.perf_counter() - start))
 
 print("The result is the same as natively sorted? %s" % (natively_sorted == sorted_list))
