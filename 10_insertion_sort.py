@@ -39,7 +39,3 @@ def performance_test(amount):
 
 for amount in [10, 100, 1_000, 10_000, 20_000, 50_000]:
     performance_test(amount)
-
-
-
-
