@@ -19,7 +19,7 @@ unsorted_list = [7, 23, 1, 45, 6789, 46, 7]
 sorted_list = selection_sort(unsorted_list)
 print(sorted_list)
 natively_sorted = sorted(unsorted_list)
-print("The result is the same as natively sorted? %s" % (sorted_list == natively_sorted))
+assert (sorted_list == natively_sorted), "The algorithm has not sorted the list correctly"
 
 
 def performance_test(amount):
@@ -36,7 +36,7 @@ def performance_test(amount):
     assert (sorted_list == natively_sorted), "The algorithm has not sorted the list correctly"
 
 
-for amount in [1_0, 10_000, 20_000, 50_000]:
+for amount in [10, 100, 1_000, 10_000, 20_000, 50_000]:
     performance_test(amount)
 
 
