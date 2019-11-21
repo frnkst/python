@@ -6,6 +6,7 @@
 #   - concat lists: list_1 += list_2
 #   - Recursion
 #   - Merge sort is fast
+#   - https://medium.com/@amirziai/merge-sort-walkthrough-with-code-in-python-e4f76d90a4ea
 # --------------------------------------------------------------
 
 import time
