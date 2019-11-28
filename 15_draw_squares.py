@@ -1,5 +1,5 @@
-# Extracts a color palette from a given link to an image, and paints circles with that color palette.
-# Usage example: python3 14_draw_circles.py -u https://data.whicdn.com/images/247170900/original.jpg -a 7810 -r 110
+# Extracts a color palette from a given link to an image, and paints squares with that color palette.
+# Usage example: python3 15_draw_squares.py -u https://data.whicdn.com/images/247170900/original.jpg -a 7810 -r 110
 
 from haishoku.haishoku import Haishoku
 from PIL import Image, ImageDraw
