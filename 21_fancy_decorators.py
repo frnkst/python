@@ -35,6 +35,3 @@ count_to_10(5, optional="optional parameter")
 count_to_11("this is a input parameter", optional="optional parameter", another_one=43)
 count_to_5()
 count_to_5_slowed_down_by_5()
-
-
-
