@@ -7,6 +7,8 @@ import asyncio
 import requests
 import curses
 import argparse
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 async def main():
@@ -27,9 +29,11 @@ async def main():
     responses = await asyncio.gather(*futures)
 
     # Calculate metrics
-    average_response_time = sum(i.elapsed.total_seconds() for i in responses) / total_requests
-    max_time = max(i.elapsed.total_seconds() for i in responses)
-    min_time = min(i.elapsed.total_seconds() for i in responses)
+    response_times = [i.elapsed.total_seconds() for i in responses]
+
+    average_response_time = sum(response_times) / total_requests
+    max_time = max(response_times)
+    min_time = min(response_times)
 
     # Display final results
     scr.addstr(5, 0, "Average: %.2f seconds" % average_response_time)
@@ -37,6 +41,10 @@ async def main():
     scr.addstr(7, 0, "Maximum: %.2f seconds" % max_time)
     scr.addstr(9, 0, "Hit enter to exit \n")
     scr.refresh()
+
+    if args.graph is True:
+        sns.distplot(response_times)
+        plt.show()
 
     # Exit on enter
     c = scr.getch()
@@ -63,6 +71,7 @@ def print_inflight_update(future):
 parser = argparse.ArgumentParser()
 parser.add_argument('-u', '--url', required=True, help="request url")
 parser.add_argument('-n', '--number', required=True, help="the number of parallel requests to be send")
+parser.add_argument('-g', '--graph', required=False, help="show a graph be displayed", action='store_true')
 args = parser.parse_args()
 
 total_requests = int(args.number)
