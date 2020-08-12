@@ -16,12 +16,11 @@ IP_ADDRESSES_LOCK = threading.Lock()
 
 
 class SSHServerHandler(paramiko.ServerInterface):
-    def check_auth_password(self, username, password):
+    def check_auth_password (self, username, password):
 
         LOGFILE_LOCK.acquire()
         try:
             logfile_handle = open(LOGFILE, "a")
-            print("New login: " + username + ":" + password)
             logfile_handle.write(username + ":" + password + "\n")
             logfile_handle.close()
         finally:

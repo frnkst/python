@@ -29,7 +29,7 @@ def performance_test(amount):
     random_list = np.random.choice(100_000, amount, replace=True).tolist()
     start = time.perf_counter()
     sorted_list = insertion_sort(random_list)
-    print("Selection sort: \t %.2f s" % (time.perf_counter() - start))
+    print("Insertion sort: \t %.2f s" % (time.perf_counter() - start))
 
     start = time.perf_counter()
     natively_sorted = sorted(random_list)
