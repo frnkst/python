@@ -2,7 +2,7 @@ from scapy.all import *
 from scapy.layers.inet import IP, TCP
 
 # By default a RST packet will be sent immediately, which is not what we want.
-# To prevent it from being sent, we can specify an iptables rule.
+# To prevent this, we can specify an iptables rule.
 # Example: iptables -A OUTPUT -p tcp --tcp-flags RST RST -d 8.8.8.8 -j DROP
 #
 # Essentially, the problem is that scapy runs in user space, and the linux
