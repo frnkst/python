@@ -1,14 +1,17 @@
+# Set the 4 environment variables CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET
+
 import os
 import tweepy
 import logging
 from random import randint
 from time import sleep
 
-USER_ID = '2715046843'
+USER_ID = 2715046843
 SLEEP_TIME_MAX = 300
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
+
 
 class LikeAndRetweetListener(tweepy.StreamListener):
   def __init__(self, api):
@@ -18,25 +21,27 @@ class LikeAndRetweetListener(tweepy.StreamListener):
   def on_status(self, tweet):
     if tweet.in_reply_to_status_id is None and tweet.user.id == USER_ID:
       sleep(randint(1, SLEEP_TIME_MAX))
-      logger.info(f"New tweet ({tweet.id})")
+      logger.info(f"Processing tweet ({tweet.id})")
       like_and_retweet(tweet)
 
   def on_error(self, status):
     logger.error(status)
 
+
 def like_and_retweet(tweet):
   if not tweet.favorited:
     try:
+      logger.info("Like!")
       tweet.favorite()
-      logger.info("Liked!")
     except Exception as e:
       logger.error("Error on like", exc_info=True)
   if not tweet.retweeted:
     try:
+      logger.info("Retweet!")
       tweet.retweet()
-      logger.info("Retweeted!")
     except Exception as e:
       logger.error("Error on retweet", exc_info=True)
+
 
 def create_api():
   consumer_key = os.getenv("CONSUMER_KEY")
@@ -56,11 +61,13 @@ def create_api():
   logger.info("API created")
   return api
 
+
 def main():
   api = create_api()
   tweets_listener = LikeAndRetweetListener(api)
   stream = tweepy.Stream(api.auth, tweets_listener)
   stream.filter(follow=[str(USER_ID)])
+
 
 if __name__ == "__main__":
   main()
